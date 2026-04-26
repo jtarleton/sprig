@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Sprig;
+namespace JTarleton\Sprig;
 
 /**
  * A Loader knows how to fetch the source text for a template name.

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Sprig;
+namespace JTarleton\Sprig;
 
 /**
  * Nodes form the abstract syntax tree (AST) the Parser produces.

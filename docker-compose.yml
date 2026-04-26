@@ -3,13 +3,12 @@ services:
     image: jt-minimal:latest
     build:
       context: .
-      dockerfile: Dockerfile      
+      dockerfile: Dockerfile
     container_name: minimal-php-sqlite
     restart: unless-stopped
     volumes:
-      - ./docroot:/var/www/html
-      - ./data:/var/www/data
-    working_dir: /var/www/html
+      - ./:/var/www
+    working_dir: /var/www
     networks:
       - traefik-public
     labels:

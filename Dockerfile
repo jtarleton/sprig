@@ -8,11 +8,11 @@ RUN apk add --no-cache --virtual .build-deps \
     && apk del .build-deps \
     && apk add --no-cache sqlite-libs
 
-WORKDIR /var/www/html
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+WORKDIR /var/www
 COPY . .
+RUN mkdir -p data && composer install --no-dev --no-interaction --prefer-dist
+
 EXPOSE 8000
-CMD ["php", "-S", "0.0.0.0:8000", "-t", "."]
-
-
-
-
+CMD ["php", "-S", "0.0.0.0:8000", "-t", "docroot"]

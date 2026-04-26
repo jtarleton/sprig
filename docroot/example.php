@@ -1,11 +1,12 @@
 <?php
 declare(strict_types=1);
 
-$composer = __DIR__ . '/vendor/autoload.php';
-file_exists($composer) ? require $composer : require __DIR__ . '/src/autoload.php';
+$root     = dirname(__DIR__);
+$composer = $root . '/vendor/autoload.php';
+file_exists($composer) ? require $composer : require $root . '/src/autoload.php';
 
-use Sprig\ArrayLoader;
-use Sprig\Environment;
+use JTarleton\Sprig\ArrayLoader;
+use JTarleton\Sprig\Environment;
 
 // ---------------------------------------------------------------------------
 // Templates
