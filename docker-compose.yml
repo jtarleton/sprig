@@ -1,0 +1,24 @@
+services:
+  php:
+    image: jt-minimal:latest
+    build:
+      context: .
+      dockerfile: Dockerfile      
+    container_name: minimal-php-sqlite
+    restart: unless-stopped
+    volumes:
+      - ./docroot:/var/www/html
+      - ./data:/var/www/data
+    working_dir: /var/www/html
+    networks:
+      - traefik-public
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.minimal-php.rule=Host(`sprig.jamestarleton.com`)
+      - traefik.http.routers.minimal-php.entrypoints=websecure
+      - traefik.http.routers.minimal-php.tls.certresolver=letsencrypt
+      - traefik.http.services.minimal-php.loadbalancer.server.port=8000
+      - traefik.http.routers.minimal-php.tls=true
+networks:
+  traefik-public:
+    external: true
